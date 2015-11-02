@@ -1,6 +1,6 @@
 {
   "name": "react-mousetrap",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "description": "React's higher order component for Mousetrap integration",
   "main": "index.js",
   "scripts": {

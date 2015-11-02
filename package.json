@@ -1,0 +1,27 @@
+{
+  "name": "react-mousetrap",
+  "version": "0.0.1",
+  "description": "React's higher order component for Mousetrap integration",
+  "main": "index.js",
+  "scripts": {
+    "test": "npm test"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/alvinsj/react-mousetrap.git"
+  },
+  "keywords": [
+    "react",
+    "mousetrap"
+  ],
+  "author": "email.to.alvin@gmail.com",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/alvinsj/react-mousetrap/issues"
+  },
+  "homepage": "https://github.com/alvinsj/react-mousetrap#readme",
+  "dependencies": {
+    "mousetrap": "^1.5.3",
+    "react": "^0.1.4"
+  }
+}

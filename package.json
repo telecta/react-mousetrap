@@ -22,6 +22,6 @@
   "homepage": "https://github.com/alvinsj/react-mousetrap#readme",
   "dependencies": {
     "mousetrap": "^1.5.3",
-    "react": "^0.1.4"
+    "react": "^0.14.0"
   }
 }

@@ -1,4 +1,4 @@
-jest.dontMock('../index.js');
+jest.dontMock('../src/index.js');
 jest.mock('mousetrap', {bind: jest.genMockFn(), unbind: jest.genMockFn()});
 
 describe('mouseTrap(Component)', () => {
@@ -28,7 +28,7 @@ describe('mouseTrap(Component)', () => {
                 return <div />;
             }
         }
-        mouseTrap = require('../index.js').mouseTrap;
+        mouseTrap = require('../src/index.js').mouseTrap;
         let NewComponent = mouseTrap(Base);
         mockProp = {}
         component = renderIntoDocument(<NewComponent hello={mockProp} />);

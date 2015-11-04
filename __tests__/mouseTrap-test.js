@@ -1,5 +1,5 @@
 jest.dontMock('../src/index.js');
-jest.mock('mousetrap', {bind: jest.genMockFn(), unbind: jest.genMockFn()});
+jest.setMock('mousetrap', {bind: jest.genMockFn(), unbind: jest.genMockFn()});
 
 describe('mouseTrap(Component)', () => {
     var ReactTestUtils,

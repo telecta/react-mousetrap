@@ -13,8 +13,16 @@ Create higher order component
 
     import {mouseTrap} from 'react-mousetrap';
 
-    class BaseComponent extends React.Component { 
-    	/*your implementation */
+    class YourComponent extends React.Component {
+        /*your implementation */
+
+        componentWillMount {
+            this.props.bindShortcut('right', this._goToNext);
+        }
+
+        _goToNext() {
+            this.props.unbindShortcut('right');
+        }
     }
 
     export default mouseTrap(BaseComponent);

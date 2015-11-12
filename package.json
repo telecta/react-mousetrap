@@ -1,9 +1,9 @@
 {
   "name": "react-mousetrap",
-  "version": "0.0.4",
+  "version": "0.0.6",
   "description": "React's higher order component for Mousetrap integration",
   "main": "lib/index.js",
-  "readme": "README.md",
+  "readmeFilename": "README.md",
   "scripts": {
     "test": "jest",
     "compile": "babel -d lib/ src/",
@@ -29,9 +29,16 @@
   },
   "keywords": [
     "react",
-    "mousetrap"
+    "mousetrap",
+    "keyboard",
+    "shortcuts",
+    "events"
   ],
-  "author": "email.to.alvin@gmail.com",
+  "author": {
+    "name" : "Alvin Ng",
+    "email" : "email.to.alvin@gmail.com",
+    "url" : "https://github.com/alvinsj"
+  },
   "license": "MIT",
   "bugs": {
     "url": "https://github.com/alvinsj/react-mousetrap/issues"

@@ -45,7 +45,9 @@
   },
   "homepage": "https://github.com/alvinsj/react-mousetrap#readme",
   "dependencies": {
-    "mousetrap": "^1.5.3",
+    "mousetrap": "^1.5.3"
+  },
+  "peerDependencies": { 
     "react": "^0.14.0"
   },
   "devDependencies": {

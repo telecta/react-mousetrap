@@ -1,15 +1,16 @@
-import Mousetrap from 'mousetrap';
 import React from 'react';
 
 export function mouseTrap(Base){
+
     return class extends React.Component {
         constructor(props){
             super(props);
             this.__mousetrapBindings = [];
+            this.Mousetrap = require('mousetrap');
         }
 
         bindShortcut (key, callback) {
-            Mousetrap.bind(key, callback);
+            this.Mousetrap.bind(key, callback);
             this.__mousetrapBindings.push(key);
         }
 
@@ -20,7 +21,7 @@ export function mouseTrap(Base){
                 this.__mousetrapBindings.splice(index, 1);
             }
 
-            Mousetrap.unbind(key);
+            this.Mousetrap.unbind(key);
         }
 
         unbindAllShortcuts () {
@@ -28,8 +29,8 @@ export function mouseTrap(Base){
                 return;
             }
 
-            this.__mousetrapBindings.forEach(function (binding) {
-                Mousetrap.unbind(binding);
+            this.__mousetrapBindings.forEach((binding) => {
+                this.Mousetrap.unbind(binding);
             });
             this.__mousetrapBindings = [];
         }

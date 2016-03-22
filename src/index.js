@@ -29,7 +29,7 @@ export function mouseTrap(Base){
                 return;
             }
 
-            this.__mousetrapBindings.forEach(function (binding) {
+            this.__mousetrapBindings.forEach((binding) => {
                 this.Mousetrap.unbind(binding);
             });
             this.__mousetrapBindings = [];

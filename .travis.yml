@@ -4,3 +4,5 @@ node_js:
   - "7"
   - "8"
 sudo: false
+before_script:
+  - npm install react react-fom

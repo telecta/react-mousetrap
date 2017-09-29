@@ -6,9 +6,9 @@
   "readmeFilename": "README.md",
   "license": "SEE LICENSE IN LICENSE",
   "scripts": {
-    "test": "jest",
+    "test": "yarn jest",
     "compile": "babel -d lib/ src/",
-    "prepublish": "npm run compile"
+    "prepublish": "yarn compile"
   },
   "repository": {
     "type": "git",

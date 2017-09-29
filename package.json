@@ -1,62 +1,53 @@
 {
   "name": "react-mousetrap",
-  "version": "0.1.1",
-  "description": "React's higher order component for Mousetrap integration",
+  "version": "0.2.0",
+  "description": "HOC builder for Mousetrap",
   "main": "lib/index.js",
   "readmeFilename": "README.md",
+  "license": "SEE LICENSE IN LICENSE",
   "scripts": {
-    "test": "jest",
+    "test": "./node_modules/.bin/jest",
     "compile": "babel -d lib/ src/",
-    "prepublish": "npm run compile"
-  },
-  "jest": {
-    "scriptPreprocessor": "<rootDir>/node_modules/babel-jest",
-    "testPathDirs": [
-      "<rootDir>/__tests__"
-    ],
-    "testPathIgnorePatterns": [
-      "pending"
-    ],
-    "unmockedModulePathPatterns": [
-      "react",
-      "react-addons-test-utils"
-    ],
-    "modulePathIgnorePatterns": []
+    "prepublish": "yarn compile"
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/alvinsj/react-mousetrap.git"
+    "url": "git+https://github.com/blacktangent/react-mousetrap.git"
   },
-  "keywords": [
-    "react",
-    "mousetrap",
-    "keyboard",
-    "shortcuts",
-    "events"
-  ],
+  "keywords": ["react", "mousetrap", "keyboard", "shortcuts", "events"],
   "author": {
-    "name" : "Alvin Ng",
-    "email" : "email.to.alvin@gmail.com",
-    "url" : "https://github.com/alvinsj"
+    "name": "Alvin Ng",
+    "email": "text@alvinsj.net",
+    "url": "https://github.com/alvinsj"
   },
-  "license": "MIT",
   "bugs": {
-    "url": "https://github.com/alvinsj/react-mousetrap/issues"
+    "url": "https://github.com/blacktangent/react-mousetrap/issues"
   },
-  "homepage": "https://github.com/alvinsj/react-mousetrap#readme",
+  "homepage": "https://github.com/blacktangent/react-mousetrap#readme",
   "dependencies": {
-    "mousetrap": "^1.6.0"
+    "mousetrap": "^1.6.1"
   },
-  "peerDependencies": { 
-    "react": "^0.14.0 || ^15.0.0"
+  "peerDependencies": {
+    "react": "^15.0.0 || ^16.0.0",
+    "react-dom": "^15.0.0 || ^16.0.0",
+    "react-polyfills": "^0.0.1"
   },
   "devDependencies": {
-    "babel": "^6.5.2",
-    "babel-cli": "^6.9.0",
-    "babel-jest": "alvinsj/babel-jest#babel-6",
+    "babel-cli": "^6.26.0",
+    "babel-core": "^6.26.0",
+    "babel-jest": "^21.2.0",
     "babel-preset-es2015": "^6.9.0",
     "babel-preset-react": "^6.5.0",
-    "jest-cli": "alvinsj/jest#quick-fix",
-    "react-addons-test-utils": "^0.14.0 || ^15.0.0"
+    "enzyme": "^3.0.0",
+    "enzyme-adapter-react-16": "^1.0.0",
+    "eslint": "^4.7.2",
+    "eslint-config-prettier": "^2.5.0",
+    "eslint-config-standard": "^10.2.1",
+    "eslint-plugin-import": "^2.7.0",
+    "eslint-plugin-node": "^5.1.1",
+    "eslint-plugin-promise": "^3.5.0",
+    "eslint-plugin-standard": "^3.0.1",
+    "jest": "^21.2.1",
+    "react-test-renderer": "^16.0.0"
   }
 }

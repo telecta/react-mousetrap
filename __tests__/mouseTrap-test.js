@@ -1,85 +1,76 @@
-jest.dontMock('../src/index.js');
-jest.setMock('mousetrap', {bind: jest.genMockFn(), unbind: jest.genMockFn()});
+jest.unmock('../src/index.js');
+jest.mock('mousetrap', () => ({
+  bind: jest.genMockFn(),
+  unbind: jest.genMockFn()
+}));
+
+import React from 'react';
+import { mount } from 'enzyme';
+import mouseTrap from '../src/index.js';
+import Adapter from 'enzyme-adapter-react-16';
+import Mousetrap from 'mousetrap';
 
 describe('mouseTrap(Component)', () => {
-    var ReactTestUtils,
-        React,
-        Mousetrap,
+  var Base, mockProp, mockShortcut, component;
+  beforeEach(() => {
+    mockShortcut = {
+      key: 'c',
+      cb: jest.genMockFn()
+    };
+    Base = props => {
+      return <div />;
+    };
+    const NewComponent = mouseTrap(Base);
+    mockProp = {};
+    component = mount(<NewComponent hello={mockProp} />);
+  });
 
-        Base,
-        mouseTrap,
-        mockProp,
-        mockShortcut,
+  it('should pass all the props back to Base', () => {
+    expect(component.props().hello).toBe(mockProp);
 
-        component;
+    let search = component.find(Base);
+    expect(search.length).toBe(1);
 
-    beforeEach(() => {
-        React = require('react');
-        ReactTestUtils = require('react-addons-test-utils');
-        Mousetrap = require('mousetrap');
-        let renderIntoDocument = ReactTestUtils.renderIntoDocument;
+    expect(search.props().hello).toBe(mockProp);
+  });
 
-        mockShortcut = {
-            key: 'c',
-            cb: jest.genMockFn()
-        }
-        Base = class extends React.Component {
-            render () {
-                return <div />;
-            }
-        }
-        mouseTrap = require('../src/index.js').mouseTrap;
-        let NewComponent = mouseTrap(Base);
-        mockProp = {}
-        component = renderIntoDocument(<NewComponent hello={mockProp} />);
-    })
+  it('should pass the prop of #bindShortcut', () => {
+    let search = component.find(Base);
+    expect(search.length).toBe(1);
 
-    it('should pass all the props back to Base', () => {
-        expect(component.props.hello).toBe(mockProp);
+    expect(search.props().bindShortcut).toBeDefined();
+    search.props().bindShortcut(mockShortcut.key, mockShortcut.cb);
 
-        let search = ReactTestUtils.scryRenderedComponentsWithType(component, Base);
-        expect(search.length).toBe(1);
+    expect(Mousetrap.bind).toBeCalledWith(mockShortcut.key, mockShortcut.cb);
+    expect(component.instance().__mousetrapBindings.length).toBe(1);
+  });
 
-        expect(search[0].props.hello).toBe(mockProp);
-    });
+  it('should pass the prop of #unbindShortcut', () => {
+    let search = component.find(Base);
+    expect(search.length).toBe(1);
 
-    it('should pass the prop of #bindShortcut', () => {
-        let search = ReactTestUtils.scryRenderedComponentsWithType(component, Base);
-        expect(search.length).toBe(1);
+    expect(search.props().unbindShortcut).toBeDefined();
 
-        expect(search[0].props.bindShortcut).toBeDefined();
-        search[0].props.bindShortcut(mockShortcut.key, mockShortcut.cb);
+    search.props().bindShortcut(mockShortcut.key, mockShortcut.cb);
+    expect(component.instance().__mousetrapBindings.length).toBe(1);
 
-        expect(Mousetrap.bind).toBeCalledWith(mockShortcut.key, mockShortcut.cb);
-        expect(component.__mousetrapBindings.length).toBe(1);
-    });
+    search.props().unbindShortcut(mockShortcut.key);
+    expect(component.instance().__mousetrapBindings.length).toBe(0);
+    expect(Mousetrap.unbind).toBeCalledWith(mockShortcut.key);
+  });
 
-    it('should pass the prop of #unbindShortcut', () => {
-        let search = ReactTestUtils.scryRenderedComponentsWithType(component, Base);
-        expect(search.length).toBe(1);
+  it('should #unbindAllShortcuts on #componentWillUnmount', () => {
+    let search = component.find(Base);
+    expect(search.length).toBe(1);
 
-        expect(search[0].props.unbindShortcut).toBeDefined();
+    expect(search.props().bindShortcut).toBeDefined();
+    search.props().bindShortcut(mockShortcut.key, mockShortcut.cb);
 
-        search[0].props.bindShortcut(mockShortcut.key, mockShortcut.cb);
-        expect(component.__mousetrapBindings.length).toBe(1);
+    expect(Mousetrap.bind).toBeCalledWith(mockShortcut.key, mockShortcut.cb);
+    expect(component.instance().__mousetrapBindings.length).toBe(1);
 
-        search[0].props.unbindShortcut(mockShortcut.key);
-        expect(component.__mousetrapBindings.length).toBe(0);
-        expect(Mousetrap.unbind).toBeCalledWith(mockShortcut.key);
-    });
-
-    it('should #unbindAllShortcuts on #componentWillUnmount', () => {
-        let search = ReactTestUtils.scryRenderedComponentsWithType(component, Base);
-        expect(search.length).toBe(1);
-
-        expect(search[0].props.bindShortcut).toBeDefined();
-        search[0].props.bindShortcut(mockShortcut.key, mockShortcut.cb);
-
-        expect(Mousetrap.bind).toBeCalledWith(mockShortcut.key, mockShortcut.cb);
-        expect(component.__mousetrapBindings.length).toBe(1);
-
-        component.componentWillUnmount();
-        expect(component.__mousetrapBindings.length).toBe(0);
-        expect(Mousetrap.unbind).toBeCalledWith(mockShortcut.key);
-    });
-})
+    component.instance().componentWillUnmount();
+    expect(component.instance().__mousetrapBindings.length).toBe(0);
+    expect(Mousetrap.unbind).toBeCalledWith(mockShortcut.key);
+  });
+});

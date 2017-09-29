@@ -1,4 +1,7 @@
 language: node_js
 node_js:
-    - "4"
+  - "6"
+  - "7"
 sudo: false
+before_script:
+  - npm install react react-dom

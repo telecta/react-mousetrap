@@ -1,16 +1,23 @@
-import React from 'react';
+import React from 'react'
+import Mousetrap from 'mousetrap'
+import 'mousetrap/plugins/global-bind/mousetrap-global-bind'
+
 
 export function mouseTrap(Base) {
   return class extends React.Component {
     constructor(props) {
       super(props);
       this.__mousetrapBindings = [];
-      this.Mousetrap = require('mousetrap');
     }
 
     bindShortcut(key, callback) {
-      this.Mousetrap.bind(key, callback);
+      Mousetrap.bind(key, callback);
       this.__mousetrapBindings.push(key);
+    }
+
+    bindGlobalShortcut(key, callback) {
+      Mousetrap.bindGlobal(key, callback)
+      this.__mousetrapBindings.push(key)
     }
 
     unbindShortcut(key) {
@@ -20,7 +27,7 @@ export function mouseTrap(Base) {
         this.__mousetrapBindings.splice(index, 1);
       }
 
-      this.Mousetrap.unbind(key);
+      Mousetrap.unbind(key);
     }
 
     unbindAllShortcuts() {
@@ -29,7 +36,7 @@ export function mouseTrap(Base) {
       }
 
       this.__mousetrapBindings.forEach(binding => {
-        this.Mousetrap.unbind(binding);
+        Mousetrap.unbind(binding);
       });
       this.__mousetrapBindings = [];
     }
@@ -43,6 +50,7 @@ export function mouseTrap(Base) {
         <Base
           {...this.props}
           bindShortcut={this.bindShortcut.bind(this)}
+          bindGlobalShortcut={this.bindGlobalShortcut.bind(this)}
           unbindShortcut={this.unbindShortcut.bind(this)}
         />
       );

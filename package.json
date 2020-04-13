@@ -31,7 +31,7 @@
   },
   "homepage": "https://github.com/blacktangent/react-mousetrap#readme",
   "dependencies": {
-    "mousetrap": "^1.6.1"
+    "mousetrap": "^1.6.5"
   },
   "peerDependencies": {
     "react": "^15.0.0 || ^16.0.0",

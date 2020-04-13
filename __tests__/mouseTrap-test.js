@@ -1,7 +1,7 @@
 jest.unmock('../src/index.js');
 jest.mock('mousetrap', () => ({
-  bind: jest.genMockFn(),
-  unbind: jest.genMockFn()
+  bind: jest.fn(),
+  unbind: jest.fn()
 }));
 
 import React from 'react';
@@ -15,7 +15,7 @@ describe('mouseTrap(Component)', () => {
   beforeEach(() => {
     mockShortcut = {
       key: 'c',
-      cb: jest.genMockFn()
+      cb: jest.fn()
     };
     Base = props => {
       return <div />;

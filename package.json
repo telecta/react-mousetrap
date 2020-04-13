@@ -14,7 +14,13 @@
     "type": "git",
     "url": "git+https://github.com/blacktangent/react-mousetrap.git"
   },
-  "keywords": ["react", "mousetrap", "keyboard", "shortcuts", "events"],
+  "keywords": [
+    "react",
+    "mousetrap",
+    "keyboard",
+    "shortcuts",
+    "events"
+  ],
   "author": {
     "name": "Alvin Ng",
     "email": "text@alvinsj.net",
@@ -48,6 +54,8 @@
     "eslint-plugin-promise": "^3.5.0",
     "eslint-plugin-standard": "^3.0.1",
     "jest": "^21.2.1",
+    "react": "^16.13.1",
+    "react-dom": "^16.13.1",
     "react-test-renderer": "^16.0.0"
   }
 }
